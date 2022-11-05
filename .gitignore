@@ -1,1 +1,3 @@
 /server/node_modules/
+/.idea/
+/chat-app/node_modules
