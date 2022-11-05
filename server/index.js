@@ -1,21 +1,25 @@
-const app = require('express')();
+const express = require('express');
 
-const httpServer = require('http').createServer(app);
+const app = express();
 
-const io = require('socket.io')(httpServer,{
-    cors: { origin: '*'}
-});
+const http = require('http');
 
-const port = process.env.PORT || 3001;
+const server = http.Server(app);
 
+const socketIO = require('socket.io');
+const io = socketIO(server);
 
+const port = process.env.PORT || 3000;
+
+server.listen(port, ()=>{
+    console.log(`Listening on port : ${port}`);
+})
 
 io.on('connection', (socket)=> {
-    console.log('User is connected!');
 
-    socket.on('message', (message) => {
-        console.log(message);
-        io.emit('message', `${socket.id.substr(0, 2)} said ${message}`);
+    socket.on('join', (data) => {
+        socket.join(data.room);
+        socket.broadcast.to(data.room).emit('User has joined');
       });
 
     socket.on('disconnect', () => {
@@ -23,5 +27,3 @@ io.on('connection', (socket)=> {
       });
 
 });
-
-httpServer.listen(port, () => console.log(`Listening on port ${port}`));
