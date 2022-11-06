@@ -14,7 +14,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   public roomId: string;
   public messageText: string;
   public messageArray: { user: string, message: string }[] = [];
-  private storageArray = [];
+  private storageArray: string[] = [];
 
   public showScreen = false;
   public phone: string;
@@ -114,7 +114,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
     this.storageArray = this.chatService.getStorage();
     const storeIndex = this.storageArray
-      .findIndex((storage) => storage.roomId === this.roomId);
+      .findIndex((storage:any) => storage.roomId === this.roomId);
 
     if (storeIndex > -1) {
       this.messageArray = this.storageArray[storeIndex].chats;
