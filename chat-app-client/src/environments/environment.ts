@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 
-import domain;
+import  {domain, clientId} from 'auth_config.json';
 
 export const environment = {
   production: false,
