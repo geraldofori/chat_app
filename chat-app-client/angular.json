@@ -1,12 +1,9 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "cli": {
-    "analytics": "78e098dc-28fd-44a7-a743-aacb36f31cb5"
-  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "chat-app": {
+    "chat-app-client": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -20,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/chat-app",
+            "outputPath": "dist/chat-app-client",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -71,10 +68,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "chat-app:build:production"
+              "browserTarget": "chat-app-client:build:production"
             },
             "development": {
-              "browserTarget": "chat-app:build:development"
+              "browserTarget": "chat-app-client:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -82,7 +79,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "chat-app:build"
+            "browserTarget": "chat-app-client:build"
           }
         },
         "test": {
@@ -105,5 +102,5 @@
       }
     }
   },
-  "defaultProject": "chat-app"
+  "defaultProject": "chat-app-client"
 }
