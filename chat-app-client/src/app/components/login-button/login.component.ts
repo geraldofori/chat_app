@@ -3,10 +3,10 @@ import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-login-button',
-  templateUrl: './login-button.component.html',
-  styles: [],
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css'],
 })
-export class LoginButtonComponent implements OnInit {
+export class LoginComponent implements OnInit {
   constructor(public auth: AuthService) {}
 
   ngOnInit(): void {}

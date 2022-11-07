@@ -4,10 +4,16 @@ const app = express();
 
 const http = require('http');
 
-const server = http.Server(app);
+const server = http.createServer(app);
 
-const socketIO = require('socket.io');
-const io = socketIO(server);
+
+const {Server} = require('socket.io');
+const io = new Server(server, {
+    cors: {
+        origin: '*',
+        methods: ['GET', 'POST']
+    },
+});
 
 const port = process.env.PORT || 3000;
 
@@ -17,9 +23,9 @@ server.listen(port, ()=>{
 
 io.on('connection', (socket)=> {
 
-    socket.on('join', (data) => {
-        socket.join(data.room);
-        socket.broadcast.to(data.room).emit('User has joined');
+    socket.on('message', (msg) => {
+        // socket.join(data.room);
+        socket.broadcast.emit('message',{user: msg.user, message: msg.message});
       });
 
     socket.on('disconnect', () => {

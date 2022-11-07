@@ -3,13 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 
-import  {domain, clientId} from 'auth_config.json';
+import  values from 'auth_config.json';
+// import  clientId from 'auth_config.json';
+
+// import  * as domain from 'auth_config.json';
+// import  * as clientId from 'auth_config.json';
 
 export const environment = {
   production: false,
   auth: {
-    domain,
-    clientId,
+    domain: values.domain,
+    clientId: values.clientId,
     redirectUri: window.location.origin,
   },
 };
