@@ -14,6 +14,9 @@ import { LogoutButtonComponent } from './components/logout-button/logout-button.
 import { AuthenticationButtonComponent } from './components/authentication-button/authentication-button.component';
 import { AuthNavComponent } from './components/auth-nav/auth-nav.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import {MatButtonModule} from "@angular/material/button";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatCardModule} from "@angular/material/card";
 
 @NgModule({
   declarations: [
@@ -33,6 +36,9 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     AuthModule.forRoot({
       ...env.auth,
     }),
+    MatButtonModule,
+    MatFormFieldModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
