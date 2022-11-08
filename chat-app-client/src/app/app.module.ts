@@ -17,6 +17,8 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import {MatButtonModule} from "@angular/material/button";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatCardModule} from "@angular/material/card";
+import { ChatComponent } from './components/chat/chat.component';
+import {MatGridListModule} from "@angular/material/grid-list";
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import {MatCardModule} from "@angular/material/card";
     LogoutButtonComponent,
     AuthenticationButtonComponent,
     AuthNavComponent,
-    NavBarComponent
+    NavBarComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +42,7 @@ import {MatCardModule} from "@angular/material/card";
     MatButtonModule,
     MatFormFieldModule,
     MatCardModule,
+    MatGridListModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
