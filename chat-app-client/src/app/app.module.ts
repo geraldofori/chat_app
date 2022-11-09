@@ -19,6 +19,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatCardModule} from "@angular/material/card";
 import { ChatComponent } from './components/chat/chat.component';
 import {MatGridListModule} from "@angular/material/grid-list";
+import { UsernameComponent } from './components/username/username.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {MatGridListModule} from "@angular/material/grid-list";
     AuthenticationButtonComponent,
     AuthNavComponent,
     NavBarComponent,
-    ChatComponent
+    ChatComponent,
+    UsernameComponent
   ],
   imports: [
     BrowserModule,

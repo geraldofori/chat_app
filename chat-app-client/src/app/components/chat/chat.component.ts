@@ -1,37 +1,46 @@
 import { Component, OnInit } from '@angular/core';
+import * as io from "socket.io-client";
 
-export interface Tile {
-  color: string;
-  cols: number;
-  rows: number;
-  text: string;
-}
 
 @Component({
   selector: 'app-chat-room',
   templateUrl: './chat.component.html',
-  styles: [
-  ]
+  styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent implements OnInit {
 
-  userName:string = '';
+  userName = '';
+  message = '';
+  messageList: {message: string, userName: string, mine: boolean}[] = [];
+  userList: string[] = [];
+  socket: any;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  tiles: Tile[] = [
-    {text: 'One', cols: 3, rows: 1, color: 'lightblue'},
-    {text: 'Two', cols: 1, rows: 2, color: 'lightgreen'},
-    {text: 'Three', cols: 1, rows: 1, color: 'lightpink'},
-    {text: 'Four', cols: 2, rows: 1, color: '#DDBDF1'},
-  ];
+  userNameUpdate(name: string): void {
+    this.socket = io.io(`http://localhost:3000/?userName=${name}`);
+    this.userName = name;
 
-  userEmail(email: string){
+    this.socket.emit('set-user-name', name);
 
-    this.userName = email;
+    this.socket.on('user-list', (userList: string[]) => {
+      this.userList = userList;
+    });
 
+    this.socket.on('message-broadcast', (data: {message: string, userName: string}) => {
+      if (data) {
+        this.messageList.push({message: data.message, userName: data.userName, mine: false});
+      }
+    });
+  }
+
+
+  sendMessage(): void {
+    this.socket.emit('message', this.message);
+    this.messageList.push({message: this.message, userName: this.userName, mine: true});
+    this.message = '';
   }
 }
