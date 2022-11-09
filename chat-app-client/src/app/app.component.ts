@@ -1,5 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-// import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ChatService} from "./chat.service";
 
 @Component({
